@@ -6,10 +6,15 @@
 //
 
 import Foundation
-
+import UIKit
 
 class CitiesRouter: CitiesRouterProtocol {
+  
+    
     var presenter: CitiesPresenterProtocol?
+    weak var viewController: UIViewController?
     
-    
+    func pushWeatherController(city: String) {
+            viewController?.navigationController?.pushViewController(WeatherModule.build(selected: city), animated: true)
+    }
 }

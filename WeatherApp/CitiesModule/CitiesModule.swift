@@ -23,9 +23,8 @@ class CitiesModule {
         interactor.presenter = presenter
         view.presenter = presenter
         router.presenter = presenter
-        
-        let navigation = UINavigationController(rootViewController: view)
+        router.viewController = view
                
-        return navigation
+        return view
     }
 }

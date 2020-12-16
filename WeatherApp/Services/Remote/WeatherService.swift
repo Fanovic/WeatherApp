@@ -11,19 +11,20 @@ import PromiseKit
 
 
 class WeatherService {
-//    class func fetchForecastByCity(with city: String) -> Promise<ForecastResponse> {
-//        return Promise { seal in
-//            let url = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&APPID=56c10e99a196d120d3de9628cdead8d4"
-//            
-//            AF.request(url).responseDecodable(of: ForecastResponse.self) { (response) in
-//                print(response)
-//                switch response.result {
-//                case .success(let response):
-//                    seal.fulfill(response)
-//                case .failure(let err):
-//                    seal.reject(err)
-//                }
-//            }
-//        }
-//    }
+    
+    class func fetchForecastByCity(with city: String) -> Promise<WeatherResponse> {
+        return Promise { seal in
+            //&cnt=5
+            let url = "https://api.openweathermap.org/data/2.5/forecast?q=\(city)&units=metric&appid=1ed505a3c37743ec18ed18a24b08c3ab"
+            AF.request(url).responseDecodable(of: WeatherResponse.self) { (response) in
+                print(response)
+                switch response.result {
+                case .success(let response):
+                    seal.fulfill(response)
+                case .failure(let err):
+                    seal.reject(err)
+                }
+            }
+        }
+    }
 }
